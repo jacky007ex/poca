@@ -1,6 +1,8 @@
 {
   "name": "poca",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "032beceb"
 }
