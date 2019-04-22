@@ -1,9 +1,44 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>{{group}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab2"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content #scrollArea [scrollEvents]="true" (ionScrollStart)="logScrollStart()" (ionScroll)="logScrolling($event)" (ionScrollEnd)="logScrollEnd()"> 
+  <!-- <div class="main">
+      <div class="chat-box">
+        <div class="message-area">
+          <div class="message" *ngFor="let message of messages" [ngClass]="getClasses(message.type)">
+            <p>
+              <span class="user_name">{{ message.from }}:</span><br>
+              {{message.text}}
+              <span class="time">{{message.created | date:'dd.MM HH:MM'}}</span>
+            </p>            
+          </div>
+        </div>       
+      </div>
+    </div> -->
+    
+    
+        <div class="message-area">
+          <div class="message" *ngFor="let message of messages" [ngClass]="getClasses(message.type)">
+            <p>
+              <span class="user_name">{{ message.from }}:</span><br>
+              {{message.text}}
+              <span class="time">{{message.created | date:'dd.MM HH:MM'}}</span>
+            </p>            
+          </div>
+        </div>       
+    
+        
 </ion-content>
+
+<ion-footer>
+    <ion-item no-lines>
+      <ion-input type="text" [(ngModel)]="message" placeholder="Message" (keyup.enter)="sendMessage()"></ion-input>
+      <ion-button clear (click)="sendMessage()" item-right>Send</ion-button>
+    </ion-item>
+</ion-footer>
