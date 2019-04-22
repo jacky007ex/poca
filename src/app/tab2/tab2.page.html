@@ -1,9 +1,17 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      {{pageHeader}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let group of groups" (click)="openGroup(group)">
+      <ion-label>
+        {{group}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
