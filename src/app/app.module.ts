@@ -9,10 +9,22 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { Facebook } from '@ionic-native/facebook/ngx'
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { LoginPage } from '../app/login/logIn';
+
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 var config = {
   apiKey: "AIzaSyB928A-FuSKpYAYs5iBfXBt4TZxUn2tq5w",
@@ -24,16 +36,26 @@ var config = {
 };
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, LoginPage],
+  entryComponents: [LoginPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(config)],
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
+    AngularFireModule.initializeApp(config)
+  ],
   providers: [
     StatusBar,
+    Facebook,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

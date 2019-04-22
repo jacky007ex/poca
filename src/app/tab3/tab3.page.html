@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      Settings
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <div *ngIf="userId!=null">
+     
+    </div>
+    <div class="valaxing_btn_container" *ngIf="userId==null">
+        <ion-button expand="block" (click)="openLogInPage()">Login With POG Account</ion-button>
+    </div>
+</ion-content>
