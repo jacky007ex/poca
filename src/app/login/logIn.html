@@ -41,6 +41,19 @@
             <ion-spinner item-start name="bubbles"></ion-spinner>
             Show Bubbles
         </button> -->
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password"></ion-input>
+        </ion-item>
+        <div class="valaxing_btn_container">
+            <ion-button expand="block" class="loginBtn loginBtn--facebook" (click)="facebookLogin();">
+                {{'Log In' | translate}}
+            </ion-button>
+        </div>
     </div>
 
     <div *ngIf="actionType=='signUp'">

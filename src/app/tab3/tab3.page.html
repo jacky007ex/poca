@@ -10,7 +10,10 @@
     <div *ngIf="userId!=null">
      
     </div>
-    <div class="valaxing_btn_container" *ngIf="userId==null">
+    <div class="btn_container" *ngIf="userId==null">
         <ion-button expand="block" (click)="openLogInPage()">Login With POG Account</ion-button>
     </div>
+    <div class="btn_container" *ngIf="userId!=null">
+      <ion-button expand="block" (click)="signOut()">{{'Sign Out' | translate}}</ion-button>
+  </div>
 </ion-content>

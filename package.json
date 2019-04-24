@@ -30,6 +30,7 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "angularfire2": "^5.1.2",
+    "cordova-ios": "4.5.5",
     "cordova-plugin-facebook4": "4.2.1",
     "cordova-plugin-firebase": "2.0.5",
     "core-js": "^2.5.4",
@@ -72,8 +73,7 @@
       "cordova-plugin-facebook4": {
         "APP_ID": "414341925789804",
         "APP_NAME": "POG"
-      },
-      "cordova-plugin-googleplus": {}
+      }
     }
   }
 }

@@ -3,7 +3,7 @@ import { Platform, NavParams, ModalController, Events, LoadingController, AlertC
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
-import { Facebook } from '@ionic-native/facebook/ngx';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 // import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
@@ -55,19 +55,24 @@ export class LoginPage {
 
     async facebookLogin(): Promise<any> {
       try {
-        const response = await this.facebook.login(['email']);
-        const facebookCredential = firebase.auth.FacebookAuthProvider
-          .credential(response.authResponse.accessToken);
-        this.loading();
-        this.afAuth.auth.signInWithCredential(facebookCredential)
-          .then(success => {
-            if(success!=null && success.uid!=null && success.uid!=""){
-              this.createFirebaseUserObject(success.uid, "", "", 
-                success.displayName, success.email);
-            }else{
-              this.doAlert("Facebook Login Fail");
-            }
-          });
+        //const response = await this.facebook.login(['email']);
+        this.facebook.login(['public_profile', 'user_friends', 'email'])
+        .then((res: FacebookLoginResponse) => {
+            console.log('Logged into Facebook!', JSON.stringify(res));
+            const facebookCredential = firebase.auth.FacebookAuthProvider
+              .credential(res.authResponse.accessToken);
+            //this.loading();
+            this.afAuth.auth.signInAndRetrieveDataWithCredential(facebookCredential)
+              .then(success => {
+                if(success!=null && success.user!=null && success.user.uid!=null && success.user.uid!=""){
+                  this.createFirebaseUserObject(success.user.uid, success.user.displayName, success.user.photoURL, 
+                    success.user.displayName, success.user.email);
+                }else{
+                  this.doAlert("Facebook Login Fail");
+                }
+              });
+        })
+        .catch(e => console.log('Error logging into Facebook', e));
       }
       catch (error) {
         console.log(error);
@@ -178,19 +183,17 @@ export class LoginPage {
     //alert.present();
   }
 
-  createFirebaseUserObject(uid: String, firstName:String, lastName:String, 
+  createFirebaseUserObject(uid: String, displayName:String, imgUrl:String, 
     username: String, email: String){
       firebase.database().ref("users/" + uid).update(
         {
           username: username,
           email: email,
-          firstName: firstName,
-          lastName: lastName,
-          points: 200,
-          vmoney: 0
+          display: displayName,
+          imgUrl: imgUrl
         }
       ).then(val=>{
-          this.loader.dismiss();
+          //this.loader.dismiss();
         }
       );
   }
