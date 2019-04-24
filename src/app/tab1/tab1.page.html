@@ -10,6 +10,7 @@
     <ion-card *ngFor="let property of propertyList$ | async; let i = index" (click)="openActivityList(i)">
         <ion-img [src]="property.imgUrl"></ion-img>
     </ion-card>
+    <!-- <ion-input [(ngModel)]="loginEmail" type="email"></ion-input> -->
     <!-- <ion-card class="welcome-card">
       <ion-img src="/assets/shapes.svg"></ion-img>
       <ion-card-header>

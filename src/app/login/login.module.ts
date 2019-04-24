@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab3Page } from './tab3.page';
+import { LoginPage } from './logIn';
 import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
@@ -12,9 +12,8 @@ import { TranslateModule } from "@ngx-translate/core";
     CommonModule,
     FormsModule,
     TranslateModule,
-    RouterModule.forChild([{ path: '', component: Tab3Page }])
+    RouterModule.forChild([{ path: '', component: LoginPage }])
   ],
-  declarations: [Tab3Page],
-  entryComponents: []
+  declarations: [LoginPage]
 })
-export class Tab3PageModule {}
+export class LoginPageModule {}

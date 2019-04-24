@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, NavParams, ModalController, Events, LoadingController, AlertController} from '@ionic/angular';
+import { Platform, ModalController, Events, LoadingController, AlertController} from '@ionic/angular';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
@@ -20,12 +20,13 @@ export class LoginPage {
     userObj;
     actionType; 
     loader;
+    loginEmail;
+    loginPw;
 
     constructor(
         private afAuth: AngularFireAuth, 
         private facebook: Facebook,
         public platform: Platform,
-        public params: NavParams,
         public events: Events,
         public modalCtrl: ModalController,
         public loadingCtrl: LoadingController,
@@ -52,6 +53,18 @@ export class LoginPage {
     dismiss() {
         this.modalCtrl.dismiss();
     }
+
+    emailLogin(){
+      this.afAuth.auth.signInWithEmailAndPassword(this.loginEmail,this.loginPw).then(
+        success => {
+         console.log("Login Success");
+        } 
+       )
+      .catch(error => {
+        console.log(error.message);
+         this.doAlert(error.message);
+       });
+     }
 
     async facebookLogin(): Promise<any> {
       try {
@@ -144,8 +157,7 @@ export class LoginPage {
       'maxlength':     'Password cannot be more than 12',
     }
   };
-  loginEmail;
-  loginPw;
+
   signup(){
     // console.log(this.userForm.value);
     // this.loading();
@@ -161,17 +173,6 @@ export class LoginPage {
     //     this.doAlert(error.message);
     //   });
   }
-
-  login(){
-    this.afAuth.auth.signInWithEmailAndPassword(this.loginEmail,this.loginPw).then(
-      success => {
-       console.log("Login Success");
-      } 
-     )
-    .catch(error => {
-       this.doAlert(error.message);
-     });
-   } 
   
   doAlert(message) {
     let alert = this.alertCtrl.create({

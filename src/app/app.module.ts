@@ -16,11 +16,11 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
-import { LoginPage } from '../app/login/logIn';
-
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LoginPage } from './login/logIn';
+import { LoginPageModule } from './login/login.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -36,7 +36,7 @@ var config = {
 };
 
 @NgModule({
-  declarations: [AppComponent, LoginPage],
+  declarations: [AppComponent],
   entryComponents: [LoginPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule,
@@ -44,6 +44,7 @@ var config = {
     AngularFireStorageModule,
     AngularFireAuthModule,
     HttpClientModule,
+    LoginPageModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

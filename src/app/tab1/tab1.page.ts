@@ -15,7 +15,6 @@ export class Tab1Page {
   constructor(
     public afd: AngularFireDatabase,
   ) {
-    console.log("wt?");
     this.getDataFromFireBase();
   }
 

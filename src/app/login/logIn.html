@@ -20,7 +20,7 @@
     </ion-segment> -->
     
     <div *ngIf="actionType=='signIn'">
-        <div class="valaxing_btn_container">
+        <div class="btn_container">
             <ion-button expand="block" class="loginBtn loginBtn--facebook" (click)="facebookLogin();">
                 {{'Log in with Facebook' | translate}}
             </ion-button>
@@ -28,56 +28,18 @@
         <br />
         <div style="text-align: center;">{{'Or'| translate}}</div>
         <br />
-        <div class="input_btn_container" style="padding-top:5px;">
-            <!-- <input [(ngModel)]="loginEmail" class="input_box" type=text placeholder="{{'Email' | translate}}"> -->
-        </div>
-        <div class="input_btn_container">
-            <!-- <input [(ngModel)]="loginPw" class="input_box" type=password placeholder="{{'Password' | translate}}"> -->
-        </div>
-        <div class="input_btn_container" style="text-align: center;">
-            <button class="button_style" (click)="login()">{{'Log In' | translate}}</button>
-        </div>
-        <!-- <button ion-item (click)="presentLoadingBubbles()">
-            <ion-spinner item-start name="bubbles"></ion-spinner>
-            Show Bubbles
-        </button> -->
         <ion-item>
-            <ion-label position="floating">Email</ion-label>
-            <ion-input type="email"></ion-input>
+            <ion-label position="floating">{{'Email' | translate}}</ion-label>
+            <ion-input [(ngModel)]="loginEmail" type="email"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label position="floating">Password</ion-label>
-            <ion-input type="password"></ion-input>
+            <ion-label position="floating">{{'Password' | translate}}</ion-label>
+            <ion-input [(ngModel)]="loginPw" type="password"></ion-input>
         </ion-item>
-        <div class="valaxing_btn_container">
-            <ion-button expand="block" class="loginBtn loginBtn--facebook" (click)="facebookLogin();">
+        <div class="btn_container">
+            <ion-button expand="block" class="loginBtn loginBtn--facebook" (click)="emailLogin();">
                 {{'Log In' | translate}}
             </ion-button>
         </div>
-    </div>
-
-    <div *ngIf="actionType=='signUp'">
-        <form  *ngIf="newUser"  (ngSubmit)="signup()">
-        <!-- <form [formGroup]="userForm"  *ngIf="newUser"  (ngSubmit)="signup()"> -->
-            <div class="input_btn_container" style="padding-top:15px;">
-                <input class="input_box" type="email" placeholder="{{'Email' | translate}}" formControlName="email" required>
-                <div class="error_style" *ngIf="formErrors.email">
-                    {{ formErrors.email }}
-                </div>
-            </div>
-            
-            <div class="input_btn_container">
-                <input class="input_box" type="password" placeholder="{{'Password' | translate}}" formControlName="password" required>
-                <div class="error_style" *ngIf="formErrors.password">
-                    {{ formErrors.password }}
-                </div>
-            </div>
-            
-            <div class="input_btn_container" style="text-align: center;">
-                <!-- <button class="button_style" type="submit" [disabled]="!userForm.valid">{{'Create Account' | translate}}</button> -->
-            </div>
-            <!-- <span *ngIf="userForm.valid" >Form is valid</span> -->
-          
-          </form>
     </div>
 </ion-content>
