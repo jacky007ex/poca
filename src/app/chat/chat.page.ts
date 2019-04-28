@@ -25,19 +25,20 @@ export class ChatPage implements OnInit {
     this.messages.push({ from: 'group-user-1', created: '2019-01-02 03:04:05', text: "hihi", type: "incoming"})
     this.messages.push({ from: 'me', created: '2019-02-02 03:04:05', text: "hihi2", type: "outgoing"})
     this.messages.push({ from: 'group-user-2', created: '2019-03-02 03:04:05', text: "hihi3", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "hihi4", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "wawawa", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "aaaaaa", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "this is goat", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "this is goat2", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "this is goat", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "this is goat2", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "this is goat", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "this is goat2", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "this is goat", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "this is goat2", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "this is goat", type: "incoming"})
-    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:05', text: "this is goat2", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:06', text: "hihi4", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:07', text: "wawawa", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:08', text: "aaaaaa", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:09', text: "this is goat", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:10', text: "this is goat2", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:11', text: "this is goat", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:12', text: "this is goat2", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:13', text: "this is goat", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:15', text: "this is goat2", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:16', text: "this is goat", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:04:18', text: "this is goat2", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:05:05', text: "this is goat", type: "incoming"})
+    this.messages.push({ from: 'group-user-3', created: '2019-04-02 03:06:05', text: "this is goat2", type: "incoming"})
+    this.messages.push({ from: 'me', created: '2019-04-02 03:07:05', text: "this is goat2", type: "outgoing"})
   }
 
   sendMessage() {
@@ -58,20 +59,21 @@ export class ChatPage implements OnInit {
   }
 
   scrollToBottom() {
-    this.content.scrollToBottom(1500);
-    // setTimeout(()=>{      
-    //   if (this.content.scrollToBottom) {
-    //     console.log("scroll to bottom.")
-    //     this.content.scrollToBottom();
-    //   }
-    // }, 1000);
+    // this.content.scrollToBottom(1500);
+    // console.log("scroll to bottom.")
+    setTimeout(()=>{      
+      if (this.content.scrollToBottom) {
+        console.log("scroll to bottom.")
+        this.content.scrollToBottom();
+      }
+    }, 1000);
   }
 
   logScrollStart() {
     console.log("logScrollStart : When Scroll Starts");
   }
  
-  logScrolling() {
+  logScrolling(event: any) {
     console.log("logScrolling : When Scrolling");
   }
  
